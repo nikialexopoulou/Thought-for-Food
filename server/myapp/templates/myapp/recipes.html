@@ -1,0 +1,44 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+{% if not cat %}
+  <h2 class="bg-warning">No recipes yet.</h2>
+{% else %}
+  Recipes:
+  <ul class="list-group">
+    <li class="list-group-item">
+      <ul>
+        {% for rec in cat.recipes.all %}
+          <li>
+            {{ rec.title }}
+          </li>
+          <li class="list-group-item">
+            <span>Reviews:
+            <a href="{% url 'myapp:reviews' rec.id %}">
+              <span class="badge badge-secondary">{{ rec.review_set.all.count }}</span>
+          </a>
+            <a href="{% url 'myapp:review' rec.id %}">
+              <span class="badge badge-secondary" aria-hidden="true">+</span>
+            </a>
+            </span>
+          </li>
+          <li class="list-group-item">
+            <span>Ingredients:
+            <a href="{% url 'myapp:ingredients' rec.id %}">
+              <span class="badge badge-secondary">→</span>
+            </a>
+            </span>
+          </li>
+          <li class="list-group-item">
+            <span>Instructions:
+            <a href="{% url 'myapp:instructions' rec.id %}">
+              <span class="badge badge-secondary">→</span>
+            </a>
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  </ul>
+{% endif %}
+{% endblock %}

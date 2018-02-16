@@ -1,0 +1,23 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+{% if not recipe %}
+  <h2 class="bg-warning">No ingredients yet.</h2>
+{% else %}
+<p> If you don't have all the ingredients, check those you do and then click Search to recommend you recipes according to the ingredients you have!</p>
+<form action="{% url 'myapp:search' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        Ingredients:
+        {% for ing in recipe.ingredients.all %}
+          <li>
+            <input type="checkbox" name="item" value="{{ ing.name }}">{{ ing }}
+          </li>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a class="btn btn-primary" href="{% url 'myapp:instructions' recipe.id %}">Go to instructions</a>
+</form>
+
+{% endif %}
+{% endblock %}

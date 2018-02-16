@@ -1,0 +1,13 @@
+<h3>Top Categories</h3>
+<div class="container">
+  <div class="row">
+    <a *ngFor="let cat of category" class="col-sm"
+       routerLink="/categories/{{cat.id}}">
+      <div class="dashboard-item">
+        <h5>{{cat.title}}</h5>
+      </div>
+    </a>
+  </div>
+</div>
+
+<app-cat-search></app-cat-search>

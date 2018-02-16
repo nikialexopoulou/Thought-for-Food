@@ -1,0 +1,33 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+<h4> Categories </h4>
+{% if cat_all %}
+  <ul class="list-group">
+    {% for cat in cat_all %}
+      <li class="list-group-item">
+        <a href= "{% url 'myapp:category' cat.id %}">{{ cat.name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No categories are available.</p>
+{% endif %}
+
+<h4> Ingredients </h4>
+{% if ing_all %}
+<form action="{% url 'myapp:search' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+    {% for i in ing_all %}
+      <li>
+        <input type="checkbox" name="item" value="{{ i.name }}">{{ i.name }}
+      </li>
+    {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+{% else %}
+  <p>No Ingredients are available.</p>
+{% endif %}
+{% endblock %}

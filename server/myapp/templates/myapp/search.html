@@ -1,0 +1,41 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+{% if not recipeList %}
+  <h2 class="bg-warning">No recipes matching.</h2>
+{% else %}
+    <div class="form-group">
+        Recipes:
+        {% for i in recipeList %}
+          <li>
+            {{ i.title }}: {{ i.calories }} calories
+          </li>
+          <li class="list-group-item">
+                <span>Reviews:
+                <a href="{% url 'myapp:reviews' i.id %}">
+                  <span class="badge badge-secondary">{{ i.review_set.all.count }}</span>
+              </a>
+                <a href="{% url 'myapp:review' i.id %}">
+                  <span class="badge badge-secondary" aria-hidden="true">+</span>
+                </a>
+                </span>
+              </li>
+              <li class="list-group-item">
+                <span>Ingredients:
+                <a href="{% url 'myapp:ingredients' i.id %}">
+                  <span class="badge badge-secondary">→</span>
+                </a>
+                </span>
+              </li>
+              <li class="list-group-item">
+                <span>Instructions:
+                <a href="{% url 'myapp:instructions' i.id %}">
+                  <span class="badge badge-secondary">→</span>
+                </a>
+                </span>
+          </li>
+        {% endfor %}
+    </div>
+</form>
+{% endif %}
+{% endblock %}

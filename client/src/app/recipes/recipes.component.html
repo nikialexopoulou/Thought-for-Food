@@ -1,0 +1,30 @@
+<div class="container" >
+  <h3>Recipes</h3>
+      <div class="row justify-content-start">
+        <div class="col-4">
+          <ul>
+            <li *ngFor="let recipe of recipes">
+                <a routerLink="/recipes/{{recipe.id}}/reviews">
+                  <span class="badge">{{ recipe.title }}</span>
+                </a>
+                {{ recipe.calories }}
+            </li>
+          </ul>
+        </div>
+    </div>
+  </div>
+
+  <div *ngIf="recipe">
+      <div class="row justify-content-start">
+        <div class="col-4">
+          <ul>
+            <li *ngFor="let recipe of recipes">
+                <a routerLink="/recipes/{{recipe.id}}/reviews">
+                  <span class="badge">{{ recipe.title }}</span>
+                </a>
+                {{ recipe.calories }}
+            </li>
+          </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<h2>Categories</h2>
+
+<div id="t">
+  <label>Category title:</label>
+
+  <!-- (click) passes input values to add() and then clears input -->
+</div>
+<div id="c">
+    <ul class="categories">
+      <li *ngFor="let cat of categories">
+        <a routerLink="/categories/{{cat.id}}">
+          <span class="badge">{{cat.id}}</span> {{cat.title}}
+        </a>
+      </li>
+    </ul>
+</div>

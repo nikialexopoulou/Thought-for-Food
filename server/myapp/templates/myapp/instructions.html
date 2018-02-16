@@ -1,0 +1,16 @@
+{% extends "myapp/base.html" %}
+
+{% block content %}
+{% if not instr %}
+  <h2 class="bg-warning">No instructions yet.</h2>
+{% else %}
+  <div class="list-group">
+    Instructions:
+    {% for i in instr %}
+      <li>
+        {{ i.name }}
+      </li>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}
